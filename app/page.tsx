@@ -2,11 +2,11 @@ import Image from "next/image";
 import Link from "next/link";
 
 const highlight = [
-  { angka: "800+", label: "Alumni" },
-  { angka: "34", label: "Provinsi" },
-  { angka: "300+", label: "Kabupaten/Kota" },
+  { angka: "1.471", label: "Alumni" },
+  { angka: "38", label: "Provinsi" },
+  { angka: "552", label: "Kabupaten/Kota" },
   { angka: "60+", label: "Pengurus" },
-  { angka: "5", label: "Program Kerja Berjalan" },
+  // { angka: "5", label: "Program Kerja Berjalan" },
 ];
 
 const runningNews =
@@ -59,23 +59,23 @@ export default function HomePage() {
         />
         <div className="container-page relative py-16 text-center sm:py-24">
           <Image
-            src="/logo-dark.jpg"
+            src="/logo-light.jpg"
             alt="Logo BI20KRAT — IPDN Angkatan XX, BIROKRAT 2013"
             width={160}
             height={160}
-            className="mx-auto rounded-full ring-4 ring-gold"
+            className="mx-auto rounded-full"
             priority
           />
-          {/* <div className="mx-auto mt-8 max-w-lg rounded-lg bg-white/95 px-6 py-4 shadow-lg">
-            <Image
-              src="/wordmark.png"
-              alt="BI20KRAT — Bhinneka Rosa Krastala"
-              width={640}
-              height={220}
-              className="h-auto w-full"
-              priority
-            />
-          </div> */}
+            {/* <div className="mx-auto mt-8 max-w-lg rounded-lg bg-white/95 px-6 py-4 shadow-lg">
+              <Image
+                src="/wordmark.png"
+                alt="BI20KRAT — Bhinneka Rosa Krastala"
+                width={640}
+                height={220}
+                className="h-auto w-full"
+                priority
+              />
+            </div> */}
           <p className="mx-auto mt-6 max-w-2xl text-lg italic text-gold-pale">
             &ldquo;Bhinneka Rosa Krastala &mdash; Satu Angkatan, Satu Pengabdian, Untuk Indonesia.&rdquo;
           </p>
@@ -90,7 +90,7 @@ export default function HomePage() {
 
       {/* Highlight */}
       <section className="border-b border-gold/30 bg-white">
-        <div className="container-page grid grid-cols-2 gap-6 py-10 text-center sm:grid-cols-5">
+        <div className="container-page grid grid-cols-2 gap-6 py-10 text-center sm:grid-cols-4">
           {highlight.map((h) => (
             <div key={h.label}>
               <p className="font-display text-3xl text-maroon sm:text-4xl">{h.angka}</p>
