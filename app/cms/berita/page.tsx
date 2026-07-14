@@ -16,7 +16,7 @@ export default function CmsBerita() {
       <h1 className="section-title">Kelola Berita</h1>
       <div className="gold-rule my-4" />
       <p className="mb-4 text-sm text-ink/60">
-        Berita teratas otomatis tampil di beranda (3 pertama). Kategori: Organisasi, Prestasi Alumni, Pemerintahan, Kegiatan Daerah, Opini, Artikel.
+        Berita teratas otomatis tampil di beranda (3 pertama). Isi berita lengkap dan gambar akan muncul saat pengunjung mengeklik berita (pop-up). Kategori: Organisasi, Prestasi Alumni, Pemerintahan, Kegiatan Daerah, Opini, Artikel.
       </p>
       <ListEditor
         items={c.berita}
@@ -26,9 +26,10 @@ export default function CmsBerita() {
           { key: "judul", label: "Judul" },
           { key: "kategori", label: "Kategori" },
           { key: "tanggal", label: "Tanggal (mis. 28 Juni 2026)" },
-          { key: "isi", label: "Isi Ringkas", textarea: true },
+          { key: "isi", label: "Isi Berita (lengkap — tampil di pop-up)", textarea: true },
+          { key: "gambar", label: "URL Gambar (satu per baris, bisa lebih dari satu)", textarea: true },
         ]}
-        makeEmpty={() => ({ kategori: "Organisasi", tanggal: "", judul: "", isi: "" })}
+        makeEmpty={() => ({ kategori: "Organisasi", tanggal: "", judul: "", isi: "", gambar: "" })}
       />
       <SaveBar onSave={() => saveSection("berita", c.berita)} />
     </div>

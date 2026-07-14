@@ -3,7 +3,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { supabase, supabaseConfigured } from "@/lib/supabase";
 
 const links = [
   { href: "/", label: "Beranda" },
@@ -18,6 +19,18 @@ const links = [
 export default function Navbar() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
+  const [masuk, setMasuk] = useState(false);
+
+  useEffect(() => {
+    if (!supabaseConfigured()) return;
+    const sb = supabase();
+    sb.auth.getSession().then(({ data }) => setMasuk(Boolean(data.session)));
+    const { data: sub } = sb.auth.onAuthStateChange((_e, session) => setMasuk(Boolean(session)));
+    return () => sub.subscription.unsubscribe();
+  }, []);
+
+  const authHref = masuk ? "/cms/profil" : "/login";
+  const authLabel = masuk ? "Profile" : "Login";
 
   return (
     <header className="sticky top-0 z-50 border-b-2 border-gold bg-maroon text-white shadow-md">
@@ -50,10 +63,10 @@ export default function Navbar() {
             );
           })}
           <Link
-            href="/login"
+            href={authHref}
             className="ml-2 rounded-md border border-gold px-4 py-1.5 text-sm font-semibold text-gold-light transition-colors hover:bg-gold hover:text-maroon-dark"
           >
-            Login
+            {authLabel}
           </Link>
         </nav>
 
@@ -84,11 +97,11 @@ export default function Navbar() {
             </Link>
           ))}
           <Link
-            href="/login"
+            href={authHref}
             onClick={() => setOpen(false)}
             className="block border-t border-maroon px-6 py-3 text-sm font-semibold text-gold-light hover:bg-maroon"
           >
-            Login Anggota
+            {authLabel}
           </Link>
         </nav>
       )}

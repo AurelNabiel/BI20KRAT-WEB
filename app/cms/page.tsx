@@ -29,10 +29,10 @@ export default function CmsDashboard() {
 
       <p className="mt-4 max-w-2xl text-sm text-ink/70">
         {session.role === "superadmin"
-          ? "Sebagai superadmin, kamu dapat mengubah seluruh isi website — dari landing page hingga kontak."
+          ? "Halo Superadmin! "
           : session.role === "admin"
-          ? "Sebagai admin, kamu dapat mengelola Berita dan Kegiatan."
-          : "Sebagai anggota, kamu dapat melihat informasi khusus anggota seperti Donasi."}
+          ? "Halo Admin! "
+          : "Halo Anggota"}
       </p>
 
       <div className="mt-6 grid gap-4 md:grid-cols-2">
@@ -50,10 +50,6 @@ export default function CmsDashboard() {
           </p>
         </Link>
       </div>
-
-      <p className="mt-8 rounded-md bg-gold-pale/60 p-4 text-xs text-ink/60">
-        Konten tersimpan di database Supabase — perubahan langsung tampil untuk semua pengunjung situs.
-      </p>
     </div>
   );
 }

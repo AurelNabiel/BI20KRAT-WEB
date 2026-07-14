@@ -101,3 +101,23 @@ langsung tampil untuk semua pengunjung, cocok untuk hosting di Vercel.
 
 Catatan keamanan: anon key memang aman diekspos di frontend; perlindungan
 data sesungguhnya ada di kebijakan RLS (`supabase/setup.sql`).
+
+## Update V6 — Berita Pop-up, Profil, Manajemen Member
+
+1. Jalankan `supabase/update-v6.sql` di SQL Editor (setelah setup.sql).
+2. Isi `SUPABASE_SERVICE_ROLE_KEY` di `.env.local` dan di Environment Variables
+   Vercel (dari Project Settings → API → service_role). Key ini hanya dipakai
+   server (API route) dan tidak pernah terkirim ke browser.
+
+Fitur baru:
+- **Berita pop-up**: klik kartu berita → modal berisi isi lengkap + galeri
+  gambar. Gambar diisi dari CMS Berita (kolom "URL Gambar", satu URL per baris).
+- **Navbar**: tombol Login otomatis berubah menjadi **Profile** saat login
+  (mengikuti status auth Supabase secara realtime).
+- **Profil Saya** (`/cms/profil`): semua user login dapat mengisi biodata
+  singkat (nama, instansi, jabatan, domisili, bio) — tersimpan di tabel
+  `profiles`, hanya bisa mengubah miliknya sendiri (RLS + trigger anti
+  naik-role sendiri).
+- **Member** (`/cms/member`, superadmin saja): daftar member, ubah role, dan
+  tambah member baru via API `/api/admin/create-user` (service role, dengan
+  verifikasi bahwa pemanggil adalah superadmin).

@@ -15,6 +15,8 @@ const menu = [
   { href: "/cms/program", label: "Program", section: "program" },
   { href: "/cms/kontak", label: "Kontak", section: "kontak" },
   { href: "/cms/donasi", label: "Donasi", section: "" }, // semua user login boleh LIHAT
+  { href: "/cms/profil", label: "Profil Saya", section: "" }, // biodata — semua user login
+  { href: "/cms/member", label: "Member", section: "member" }, // hanya superadmin
 ];
 
 export default function CmsLayout({ children }: { children: React.ReactNode }) {

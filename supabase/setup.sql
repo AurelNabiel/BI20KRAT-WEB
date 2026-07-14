@@ -1,4 +1,10 @@
+-- ============================================================================
+-- SETUP DATABASE BI20KRAT (jalankan di Supabase Dashboard -> SQL Editor)
+-- Membuat: profiles (role user), site_sections (konten per seksi), RLS,
+-- dan seed konten default.
+-- ============================================================================
 
+-- 1. PROFILES: menyimpan role tiap user auth ---------------------------------
 create table if not exists public.profiles (
   id uuid primary key references auth.users (id) on delete cascade,
   username text,

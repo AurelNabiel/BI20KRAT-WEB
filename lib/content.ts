@@ -8,7 +8,8 @@
 
 import { useEffect, useState } from "react";
 
-export type Berita = { kategori: string; tanggal: string; judul: string; isi: string };
+export type Berita = { kategori: string; tanggal: string; judul: string; isi: string; gambar?: string };
+// `gambar`: daftar URL gambar dipisah baris baru (opsional)
 export type AgendaItem = { jenis: string; tanggal: string; acara: string; lokasi: string };
 export type Highlight = { angka: string; label: string };
 export type ProgramItem = { nama: string; ket: string };
