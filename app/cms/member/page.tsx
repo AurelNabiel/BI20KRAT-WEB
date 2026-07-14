@@ -126,10 +126,6 @@ export default function MemberPage() {
             </tbody>
           </table>
         </div>
-        <p className="mt-3 text-xs text-ink/50">
-          * Penambahan member memakai API server dengan service role key — pastikan
-          <code> SUPABASE_SERVICE_ROLE_KEY</code> sudah diisi di environment (Vercel/.env.local).
-        </p>
       </div>
     </div>
   );
