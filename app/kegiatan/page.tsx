@@ -1,14 +1,6 @@
-import type { Metadata } from "next";
+"use client";
 
-export const metadata: Metadata = { title: "Kegiatan" };
-
-const upcoming = [
-  { jenis: "Rapat", tanggal: "20 Juli 2026", acara: "Rapat Koordinasi Nasional Pengurus", lokasi: "Zoom / Jakarta" },
-  { jenis: "Olahraga", tanggal: "17 Agustus 2026", acara: "Upacara & Gerak Jalan Kemerdekaan", lokasi: "Serentak per wilayah" },
-  { jenis: "Seminar", tanggal: "5 September 2026", acara: "Seminar Kepemimpinan Birokrasi Digital", lokasi: "Bandung" },
-  { jenis: "Business Forum", tanggal: "3 Oktober 2026", acara: "BI20KRAT Business Forum", lokasi: "Jakarta" },
-  { jenis: "Family Gathering", tanggal: "15 November 2026", acara: "Family Gathering Nasional", lokasi: "Bogor" },
-];
+import { useContent } from "@/lib/content";
 
 const jenisKegiatan = [
   { nama: "Seminar", ket: "Peningkatan kapasitas dan wawasan kebijakan publik." },
@@ -20,6 +12,8 @@ const jenisKegiatan = [
 ];
 
 export default function KegiatanPage() {
+  const c = useContent();
+
   return (
     <div className="container-page py-16">
       <p className="eyebrow">Agenda &amp; Aktivitas</p>
@@ -29,7 +23,7 @@ export default function KegiatanPage() {
       <section className="mt-8">
         <h2 className="font-display text-2xl text-maroon">Upcoming Event</h2>
         <ul className="mt-4 divide-y divide-gold/30 rounded-lg border border-gold/30 bg-white">
-          {upcoming.map((a) => (
+          {c.kegiatan.map((a) => (
             <li key={a.acara} className="flex flex-col gap-1 px-6 py-4 sm:flex-row sm:items-center sm:justify-between">
               <div>
                 <span className="mr-2 rounded-full bg-gold-pale px-2.5 py-0.5 text-xs font-semibold uppercase tracking-wider text-maroon">{a.jenis}</span>

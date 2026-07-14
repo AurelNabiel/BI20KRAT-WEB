@@ -1,30 +1,23 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { useContent } from "@/lib/content";
 
 const kategoriList = ["Semua", "Organisasi", "Prestasi Alumni", "Pemerintahan", "Kegiatan Daerah", "Opini", "Artikel"];
 
-const berita = [
-  { kategori: "Organisasi", tanggal: "28 Juni 2026", judul: "Temu Nasional BI20KRAT 2026 Sukses Digelar", isi: "Lebih dari 400 alumni dari 34 provinsi hadir di Jatinangor: napak tilas kampus, malam keakraban, dan penggalangan dana beasiswa." },
-  { kategori: "Prestasi Alumni", tanggal: "2 Juni 2026", judul: "Tiga Alumni Dilantik sebagai Kepala Dinas", isi: "Rekan Angkatan XX dipercaya memimpin perangkat daerah strategis di tiga provinsi. Selamat mengemban amanah!" },
-  { kategori: "Kegiatan Daerah", tanggal: "15 Juni 2026", judul: "BI20KRAT Peduli: Baksos Panti Asuhan Kasih Bunda", isi: "Pengurus wilayah DKI Jakarta menyalurkan bantuan pendidikan dan sembako bagi 120 anak asuh." },
-  { kategori: "Pemerintahan", tanggal: "10 Mei 2026", judul: "Webinar Transformasi Digital Pelayanan Publik", isi: "Narasumber alumni berbagi pengalaman implementasi SPBE di daerah, diikuti 250 peserta daring." },
-  { kategori: "Opini", tanggal: "1 Mei 2026", judul: "Birokrasi yang Melayani: Refleksi Purna Praja", isi: "Kolom opini alumni tentang reformasi birokrasi dan pelayanan publik yang berpihak pada rakyat." },
-  { kategori: "Artikel", tanggal: "20 April 2026", judul: "Kiat Membangun Jejaring Lintas Instansi", isi: "Artikel praktis memanfaatkan jaringan alumni untuk kolaborasi program antardaerah." },
-];
-
 export default function BeritaPage() {
+  const c = useContent();
   const [kategori, setKategori] = useState("Semua");
   const [q, setQ] = useState("");
 
   const hasil = useMemo(() => {
     const term = q.toLowerCase();
-    return berita.filter(
+    return c.berita.filter(
       (b) =>
         (kategori === "Semua" || b.kategori === kategori) &&
         (!term || b.judul.toLowerCase().includes(term) || b.isi.toLowerCase().includes(term))
     );
-  }, [kategori, q]);
+  }, [c.berita, kategori, q]);
 
   return (
     <div className="container-page py-16">
@@ -67,9 +60,7 @@ export default function BeritaPage() {
           </article>
         ))}
         {hasil.length === 0 && (
-          <p className="col-span-full rounded-md border border-gold/30 bg-white px-6 py-8 text-center text-sm text-ink/60">
-            Tidak ada berita yang cocok.
-          </p>
+          <p className="col-span-full rounded-md border border-gold/30 bg-white px-6 py-8 text-center text-sm text-ink/60">Tidak ada berita yang cocok.</p>
         )}
       </div>
     </div>

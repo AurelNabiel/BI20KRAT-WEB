@@ -1,21 +1,20 @@
-import type { Metadata } from "next";
+"use client";
 
-export const metadata: Metadata = { title: "Kontak" };
-
-// TODO: ganti dengan link resmi
-const FORM_KONTAK = "https://forms.gle/GANTI-LINK-FORM-KONTAK";
-const MAPS_EMBED = "https://www.google.com/maps?q=Jakarta&output=embed";
-
-const sosmed = [
-  { nama: "WhatsApp", url: "https://wa.me/6281200000000", ket: "+62 812-0000-0000" },
-  { nama: "Email", url: "mailto:sekretariat@bi20krat.or.id", ket: "sekretariat@bi20krat.or.id" },
-  { nama: "Instagram", url: "https://instagram.com/bi20krat", ket: "@bi20krat" },
-  { nama: "Facebook", url: "https://facebook.com/bi20krat", ket: "BI20KRAT Official" },
-  { nama: "LinkedIn", url: "https://linkedin.com/company/bi20krat", ket: "BI20KRAT" },
-  { nama: "YouTube", url: "https://youtube.com/@bi20krat", ket: "BI20KRAT Official" },
-];
+import { useContent } from "@/lib/content";
 
 export default function KontakPage() {
+  const c = useContent();
+  const k = c.kontak;
+
+  const saluran = [
+    { nama: "WhatsApp", url: `https://wa.me/${k.whatsapp.replace(/[^0-9]/g, "")}`, ket: k.whatsapp },
+    { nama: "Email", url: `mailto:${k.email}`, ket: k.email },
+    { nama: "Instagram", url: k.instagram, ket: k.instagram.replace("https://instagram.com/", "@") },
+    { nama: "Facebook", url: k.facebook, ket: "BI20KRAT Official" },
+    { nama: "LinkedIn", url: k.linkedin, ket: "BI20KRAT" },
+    { nama: "YouTube", url: k.youtube, ket: "BI20KRAT Official" },
+  ];
+
   return (
     <div className="container-page py-16">
       <p className="eyebrow">Hubungi Kami</p>
@@ -25,11 +24,9 @@ export default function KontakPage() {
       <div className="mt-8 grid gap-8 md:grid-cols-2">
         <section className="card">
           <h2 className="font-display text-2xl text-maroon">Sekretariat BI20KRAT</h2>
-          <p className="mt-3 text-sm leading-relaxed text-ink/80">
-            Jakarta, Indonesia (alamat lengkap menyusul)
-          </p>
+          <p className="mt-3 text-sm leading-relaxed text-ink/80">{k.alamat}</p>
           <ul className="mt-4 space-y-3">
-            {sosmed.map((s) => (
+            {saluran.map((s) => (
               <li key={s.nama}>
                 <a
                   href={s.url}
@@ -43,14 +40,14 @@ export default function KontakPage() {
               </li>
             ))}
           </ul>
-          <a href={FORM_KONTAK} target="_blank" rel="noopener noreferrer" className="btn-primary mt-6 w-full text-center">
+          <a href={k.formKontak} target="_blank" rel="noopener noreferrer" className="btn-primary mt-6 block w-full text-center">
             Kirim Pesan via Form Kontak
           </a>
         </section>
 
         <section className="overflow-hidden rounded-lg border border-gold/30 bg-white shadow-sm">
           <iframe
-            src={MAPS_EMBED}
+            src={k.mapsEmbed}
             title="Lokasi Sekretariat BI20KRAT"
             className="h-full min-h-[420px] w-full border-0"
             loading="lazy"

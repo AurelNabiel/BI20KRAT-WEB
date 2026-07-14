@@ -1,16 +1,12 @@
-import type { Metadata } from "next";
+"use client";
 
-export const metadata: Metadata = { title: "Program Unggulan" };
+import { useContent } from "@/lib/content";
 
-const program = [
-  { nama: "BI20KRAT Peduli", ket: "Program bantuan sosial bagi masyarakat terdampak bencana dan kelompok rentan.", ikon: "\u2764" },
-  { nama: "BI20KRAT Mengajar", ket: "Berbagi pengalaman dan ilmu pemerintahan kepada Praja IPDN dan generasi muda.", ikon: "\uD83C\uDF93" },
-  { nama: "BI20KRAT Business Network", ket: "Jejaring usaha alumni: kolaborasi bisnis, business matching, dan pemberdayaan ekonomi.", ikon: "\uD83E\uDD1D" },
-  { nama: "BI20KRAT Scholarship", ket: "Beasiswa pendidikan bagi putra-putri alumni dan masyarakat berprestasi.", ikon: "\uD83C\uDFC6" },
-  { nama: "BI20KRAT Digital", ket: "Transformasi digital alumni: literasi teknologi, portal alumni, dan layanan digital.", ikon: "\uD83D\uDCBB" },
-];
+const ikon = ["\u2764", "\uD83C\uDF93", "\uD83E\uDD1D", "\uD83C\uDFC6", "\uD83D\uDCBB", "\u2B50"];
 
 export default function ProgramPage() {
+  const c = useContent();
+
   return (
     <div className="container-page py-16">
       <p className="eyebrow">Kontribusi Nyata</p>
@@ -18,9 +14,9 @@ export default function ProgramPage() {
       <div className="gold-rule my-4" />
 
       <div className="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-        {program.map((p) => (
+        {c.program.map((p, i) => (
           <div key={p.nama} className="card border-t-4 border-t-gold">
-            <div className="text-3xl" aria-hidden="true">{p.ikon}</div>
+            <div className="text-3xl" aria-hidden="true">{ikon[i % ikon.length]}</div>
             <h2 className="mt-3 font-display text-xl text-maroon">{p.nama}</h2>
             <p className="mt-2 text-sm leading-relaxed text-ink/70">{p.ket}</p>
           </div>

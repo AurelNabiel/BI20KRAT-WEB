@@ -8,14 +8,10 @@ import { useState } from "react";
 const links = [
   { href: "/", label: "Beranda" },
   { href: "/tentang", label: "Tentang" },
-  { href: "/organisasi", label: "Organisasi" },
-  { href: "/alumni", label: "Alumni" },
   { href: "/berita", label: "Berita" },
   { href: "/kegiatan", label: "Kegiatan" },
   { href: "/galeri", label: "Galeri" },
   { href: "/program", label: "Program" },
-  { href: "/dokumen", label: "Dokumen" },
-  { href: "/donasi", label: "Donasi" },
   { href: "/kontak", label: "Kontak" },
 ];
 
@@ -28,7 +24,7 @@ export default function Navbar() {
       <div className="container-page flex h-16 items-center justify-between">
         <Link href="/" className="flex items-center gap-3" onClick={() => setOpen(false)}>
           <Image
-            src="/logo-light.jpg"
+            src="/logo-dark.jpg"
             alt="Logo BI20KRAT"
             width={40}
             height={40}
@@ -38,14 +34,14 @@ export default function Navbar() {
           <span className="font-display text-xl tracking-wide">BI20KRAT</span>
         </Link>
 
-        <nav className="hidden items-center gap-0.5 lg:flex" aria-label="Navigasi utama">
+        <nav className="hidden items-center gap-1 md:flex" aria-label="Navigasi utama">
           {links.map((l) => {
             const active = pathname === l.href;
             return (
               <Link
                 key={l.href}
                 href={l.href}
-                className={`rounded-md px-2.5 py-2 text-sm font-medium transition-colors ${
+                className={`rounded-md px-3 py-2 text-sm font-medium transition-colors ${
                   active ? "bg-maroon-dark text-gold-light" : "hover:bg-maroon-light hover:text-gold-pale"
                 }`}
               >
@@ -53,10 +49,16 @@ export default function Navbar() {
               </Link>
             );
           })}
+          <Link
+            href="/login"
+            className="ml-2 rounded-md border border-gold px-4 py-1.5 text-sm font-semibold text-gold-light transition-colors hover:bg-gold hover:text-maroon-dark"
+          >
+            Login
+          </Link>
         </nav>
 
         <button
-          className="rounded-md p-2 hover:bg-maroon-light lg:hidden"
+          className="rounded-md p-2 hover:bg-maroon-light md:hidden"
           onClick={() => setOpen(!open)}
           aria-expanded={open}
           aria-label="Buka menu"
@@ -68,7 +70,7 @@ export default function Navbar() {
       </div>
 
       {open && (
-        <nav className="max-h-[70vh] overflow-y-auto border-t border-maroon-light bg-maroon-dark lg:hidden" aria-label="Navigasi mobile">
+        <nav className="border-t border-maroon-light bg-maroon-dark md:hidden" aria-label="Navigasi mobile">
           {links.map((l) => (
             <Link
               key={l.href}
@@ -81,6 +83,13 @@ export default function Navbar() {
               {l.label}
             </Link>
           ))}
+          <Link
+            href="/login"
+            onClick={() => setOpen(false)}
+            className="block border-t border-maroon px-6 py-3 text-sm font-semibold text-gold-light hover:bg-maroon"
+          >
+            Login Anggota
+          </Link>
         </nav>
       )}
     </header>
