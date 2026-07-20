@@ -37,7 +37,7 @@ export default function Navbar() {
       <div className="container-page flex h-16 items-center justify-between">
         <Link href="/" className="flex items-center gap-3" onClick={() => setOpen(false)}>
           <Image
-            src="/logo-dark.jpg"
+            src="/logo-light.jpg"
             alt="Logo BI20KRAT"
             width={40}
             height={40}

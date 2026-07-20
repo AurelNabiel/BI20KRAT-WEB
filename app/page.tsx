@@ -11,9 +11,9 @@ export default function HomePage() {
 
   return (
     <>
-      <div className="overflow-hidden border-b border-gold/40 bg-maroon-dark py-2 text-sm text-gold-pale">
+      {/* <div className="overflow-hidden border-b border-gold/40 bg-maroon-dark py-2 text-sm text-gold-pale">
         <div className="animate-marquee whitespace-nowrap">{c.landing.runningNews.repeat(2)}</div>
-      </div>
+      </div> */}
 
       <section className="relative overflow-hidden bg-maroon text-white">
         <div

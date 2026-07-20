@@ -17,7 +17,6 @@ export default function Footer() {
           <p className="mb-3 font-semibold uppercase tracking-wider text-gold">Navigasi</p>
           <ul className="grid grid-cols-2 gap-2 text-sm text-white/80">
             <li><Link href="/tentang" className="hover:text-gold-light">Tentang</Link></li>
-            <li><Link href="/alumni" className="hover:text-gold-light">Alumni</Link></li>
             <li><Link href="/berita" className="hover:text-gold-light">Berita</Link></li>
             <li><Link href="/kegiatan" className="hover:text-gold-light">Kegiatan</Link></li>
             <li><Link href="/galeri" className="hover:text-gold-light">Galeri</Link></li>
